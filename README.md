@@ -24,7 +24,5 @@ Below, I am attaching a video to show how it looks.
 - Redux-toolkit
 - Jest(Testing)
 
-## Demo
-
 
 
