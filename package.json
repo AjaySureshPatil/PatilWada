@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "this is namaste react by akshay saini",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "node dev.cjs",
+    "dev": "node dev.cjs",
     "build": "parcel build index.html",
     "test": "jest",
     "watch-test": "jest --watch"

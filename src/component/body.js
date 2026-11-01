@@ -4,6 +4,7 @@ import { useState,useEffect } from "react";
 import Shimmer from "./shimmer.js";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { API_BASE_URL } from "../utils/api.js";
 // import data from "../utils/RestaurantData.js";
 
 const getRestaurants = (json) => {
@@ -58,9 +59,18 @@ const Body=()=>{
   const fetchData=async()=>
   {
     try {
-      // First is old working.
+      // OLD CODE: Browser made a direct request to Swiggy.
+      // This can fail in production because Swiggy does not allow the Vercel domain through CORS.
       // const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1119261&lng=79.0878065&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING ");
-      const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING ");
+      // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING ");
+
+      // NEW CODE: Call our own /api route.
+      // The request stays on the same Vercel domain, and api/restaurants.js fetches Swiggy on the server.
+      const data = await fetch(`${API_BASE_URL}/api/restaurants?lat=19.07480&lng=72.88560`);
+      // NEW CODE: Clearly handle unsuccessful API responses instead of trying to parse an error page.
+      if (!data.ok) {
+        throw new Error(`Restaurant API returned ${data.status}`);
+      }
       const json= await data.json();
       const restaurants = getRestaurants(json);
       const restTestType = getRestTestType(json);
