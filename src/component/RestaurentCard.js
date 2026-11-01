@@ -11,7 +11,7 @@ const RestaurentCard=(props)=>{
     return (
       <>
         <div  data-testid="resCard"
-           className="ml-10 h- p-4  w-64 hover:shadow-2xl flex flex-col   rounded-lg ">
+           className="ml-20 h- p-4  w-64 hover:shadow-2xl flex flex-col   rounded-lg ">
           <img className="rounded-md overflow-hidden min-h-[180px] h-20 object-cover overlay"src={CDN_URL+cloudinaryImageId}/>
           <h3 className="font-bold p-1 text-lg">{name}</h3>
           <h4 className="text-base truncate ">{cuisines.join(", ")}</h4>
