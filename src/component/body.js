@@ -1,5 +1,5 @@
 import RestaurentCard  from "./RestaurentCard.js";
-import RestaurentTestType  from "./RestaurentTestType.js";
+// import RestaurentTestType  from "./RestaurentTestType.js";
 import { useState,useEffect } from "react";
 import Shimmer from "./shimmer.js";
 import { Link } from "react-router-dom";
@@ -25,30 +25,30 @@ const getRestaurants = (json) => {
   return [];
 };
 
-const getRestTestType = (json) => {
-  const cards = json?.data?.cards || [];
+// const getRestTestType = (json) => {
+//   const cards = json?.data?.cards || [];
 
-  // {console.log(cards)}
+//   // {console.log(cards)}
 
-  for (const card of cards) {
-    const restaurantsTestType =
-      // card?.card?.gridElements?.infoWithStyle;  //New
-      card?.card?.card?.gridElements?.infoWithStyle?.info ;    //New
+//   for (const card of cards) {
+//     const restaurantsTestType =
+//       // card?.card?.gridElements?.infoWithStyle;  //New
+//       card?.card?.card?.gridElements?.infoWithStyle?.info ;    //New
 
-        {console.log(restaurantsTestType)}
-    if (Array.isArray(restaurantsTestType) && restaurantsTestType.length > 0) {
-      return restaurantsTestType;
-    }
-  }
+//         {console.log(restaurantsTestType)}
+//     if (Array.isArray(restaurantsTestType) && restaurantsTestType.length > 0) {
+//       return restaurantsTestType;
+//     }
+//   }
 
-  return [];
-};
+//   return [];
+// };
 
 
 const Body=()=>{
   const [listOfRestaurent,setListOfRestaurent]=useState([]);
   const [filteredrestaurent,setfilteredrestaurent]=useState([]);
-  const [testType,setTestType] = useState([]);
+  // const [testType,setTestType] = useState([]);
 
   const [searchtxt,setsearchtxt]=useState("");
 
@@ -73,17 +73,17 @@ const Body=()=>{
       }
       const json= await data.json();
       const restaurants = getRestaurants(json);
-      const restTestType = getRestTestType(json);
+      // const restTestType = getRestTestType(json);
       setListOfRestaurent(restaurants);
       setfilteredrestaurent(restaurants);
-      setTestType(restTestType);
+      // setTestType(restTestType);
       // {console.log(restTestType)}
 
     } catch (error) {
       console.error("Unable to fetch restaurants", error);
       setListOfRestaurent([]);
       setfilteredrestaurent([]);
-      setTestType([]);
+      // setTestType([]);
     }
   };
 
@@ -130,12 +130,12 @@ const Body=()=>{
           </div>
 
           {/* Ajay Top Restaurent */}
-          <div className="flex flex-wrap ">
-             {/* <h1>What's on your mind?</h1> */}
+          {/* <div className="flex flex-wrap ">
+             <h1>What's on your mind?</h1>          // comment this
              {filteredrestaurent.map((restaurent)=>(
                 <Link style={{textDecoration: 'none'}} key={restaurent.info.id}to={"restaurent/"+restaurent.info.id}><RestaurentTestType  resData={restaurent}/></Link>
              ))}
-          </div>
+          </div> */}
 
           {/* Original */}
           <div className="flex flex-wrap ">

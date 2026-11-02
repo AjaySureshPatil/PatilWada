@@ -5,7 +5,7 @@ const RestaurentTestType = (props) => {
     resData?.info;
   return (
     <>
-      {/* <div
+      <div
         data-testid="resCard"
         className="ml-10 h- p-4  w-64 hover:shadow-2xl flex flex-col   rounded-lg "
       >
@@ -20,7 +20,7 @@ const RestaurentTestType = (props) => {
         <h5 className="">{avgRating}⭐</h5>
       </div>
 
-      {console.log(resData)} */}
+      {console.log(resData)}
 
     </>
   );
